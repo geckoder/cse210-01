@@ -60,6 +60,8 @@ class PlayTicTacToe:
         for index in newBoard:
             print(index)
         return newBoard
+    def determineWinner():
+        pass
         
 
                 
