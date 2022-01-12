@@ -59,11 +59,13 @@ class PlayTicTacToe:
         newBoard.insert(3, "----------")
         for index in newBoard:
             print(index)
+        return newBoard
         
 
                 
         
 def main():
+
     print("Welcome to the Tic Tac Toe Game! It's tic-tac-totally awesome!")
     p1 = PlayTicTacToe(1, "x")
     p2 = PlayTicTacToe(2, "o")
@@ -72,9 +74,14 @@ def main():
     p1.displayPB(playingBoard)
     
     moveP1 = input("Hello player one! Please enter a number from 1-9: ")
-    p1.your_turn(playingBoard, moveP1, "x")
-    #moveP2 = input("Hello player two! Please enter a number from 1-9: ")
-    #p2.your_turn(playingBoard, moveP2)
+    updatedBoard = p1.your_turn(playingBoard, moveP1, "x")
+    game = "banana"
+    while game != "no":
+        moveP1 = input("Hello player one! Please enter a number from 1-9: ")
+        updatedBoard = p1.your_turn(updatedBoard, moveP1, "x")
+        moveP2 = input("Hello player two! Please enter a number from 1-9: ")
+        p2.your_turn(updatedBoard, moveP2, "o")
+        game = input("Continue playing? (yes or no): ")
 
     
 
