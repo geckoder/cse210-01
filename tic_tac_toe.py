@@ -107,6 +107,43 @@ class PlayTicTacToe:
             winner = "No winner."
         # Return winner to variable
         return winner
+    def checkDraw(self, playingBoard):
+        drawCheckArray = playingBoard.copy()
+        # Remove "----------"
+        drawCheckArray.pop(1)
+        drawCheckArray.pop(2)
+        # Split list by "|" and assign to row number
+        row1 = drawCheckArray[0].split(" | ")
+        row2 = drawCheckArray[1].split(" | ")
+        row3 = drawCheckArray[2].split(" | ")
+        # Clear copy board
+        drawCheckArray.clear()
+        # Add newly cleaned lists to winner board
+        drawCheckArray.append(row1)
+        drawCheckArray.append(row2)
+        drawCheckArray.append(row3)
+        # Begin conditions for draw - if x's and o's on each row, draw
+        draw = " "
+        for index in row1:
+            check1 = "no"
+            if index == "x" or index == "o":
+                check1 = "yes"
+        for index in row2:
+            check2 = "no"
+            if index == "x" or index == "o":
+                check2 = "yes"
+        for index in row3:
+            check3 = "no"
+            if index == "x" or index == "o":
+                check3 = "yes"
+        for index in row1[1]:
+            check4 = "no"
+            if index == "x" or index == "o":
+                check4 = "yes"
+        if check1 == "yes" and check2 == "yes" and check3 == "yes" and check4 == "yes":
+            draw = "uh oh"
+        # Return draw to variable
+        return draw
 # Main function where class and methods are called
 def main():
     # Display Welcome Message
@@ -136,6 +173,12 @@ def main():
             print("Player One Wins!")
             # Stop loop
             break
+        # Check if draw
+        draw = p1.checkDraw(playingBoard)
+        if draw == "uh oh":
+            print()
+            print("It's a draw!")
+            break
         print()
         # Display turn - record player's choice
         moveP2 = input("Your turn player two! Please enter a number from 1-9: ")
@@ -147,6 +190,12 @@ def main():
         if chickenDinner == "Winner!":
             print()
             print("Player Two Wins!")
+            game = "end"
+        # Check if draw
+        draw = p2.checkDraw(playingBoard)
+        if draw == "uh oh":
+            print()
+            print("It's a draw!")
             game = "end"
         print()
 # Call to main function
